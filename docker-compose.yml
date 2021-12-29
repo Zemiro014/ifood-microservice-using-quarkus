@@ -1,0 +1,11 @@
+# terá todos os serviços necessários para o projecto funcionar: banco de dados, Kafka, ActiveMQ, nossas aplicações :porta,
+version: "3.7"
+services:
+  postgres_cadastro:
+    container_name: postgres_cadastro_ifood
+    image: postgres:12.2
+    environment:
+      POSTGRES_USER: cadastro
+      POSTGRES_PASSWORD: cadastro
+    ports:
+      - "5432:5432"
