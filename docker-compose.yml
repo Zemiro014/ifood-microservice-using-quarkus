@@ -19,6 +19,7 @@ services:
       DB_VENDOR: h2
     ports:
       - "8180:8080"
+
 # Adicionando o JAEGER: usado para delinear (mapear) uma requisição até ao banco de dados para ver aonde está demorando mais tempo, ver o tipo de resposta e o que foi passado
   jaeger_ifood:
     container_name: jaeger_ifood
@@ -32,3 +33,15 @@ services:
       - "14268:14268"
       - "14250:14250"
       - "9411:9411"
+
+# Adicionando o service Prometheus: responsável em buscar as metricas da nossa aplicação e salvando-os
+  prometheus_ifood:
+    container_name: prometheus_ifood
+    image: prometheus-ifood
+    network_mode: "host"
+
+# Adicionando o serevice grafana: será usado para expor os dados do promotheus de modo a construir um dashboard
+  grafana_ifood:
+    container_name: grafana_ifood
+    image: grafana/grafana:6.5.0
+    network_mode: "host"
