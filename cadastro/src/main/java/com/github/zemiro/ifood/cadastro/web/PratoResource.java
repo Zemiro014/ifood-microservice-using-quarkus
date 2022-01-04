@@ -5,9 +5,15 @@ import com.github.zemiro.ifood.cadastro.dto.AtualizarPratoDTO;
 import com.github.zemiro.ifood.cadastro.entities.Prato;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.PratoService;
+import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
+import org.eclipse.microprofile.openapi.annotations.security.OAuthFlow;
+import org.eclipse.microprofile.openapi.annotations.security.OAuthFlows;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -18,6 +24,10 @@ import java.util.List;
 @Path("/restaurantes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed("proprietario")
+@SecurityScheme(securitySchemeName = "ifood-oauth", type = SecuritySchemeType.OAUTH2, flows =
+@OAuthFlows(password = @OAuthFlow(tokenUrl = "http://localhost:8180/auth/realms/ifood/protocol/openid-connect/token")))
+//@SecurityRequirement(name = "ifood-oauth")
 public class PratoResource {
 
     @Inject
