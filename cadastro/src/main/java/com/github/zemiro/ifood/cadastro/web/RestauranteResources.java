@@ -1,5 +1,7 @@
 package com.github.zemiro.ifood.cadastro.web;
 
+import com.github.zemiro.ifood.cadastro.dto.AdicionarRestauranteDTO;
+import com.github.zemiro.ifood.cadastro.dto.AtualizarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
 
@@ -8,8 +10,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
-import java.net.URI;
 import java.util.List;
 
 @Path("/restaurantes")
@@ -28,17 +28,17 @@ public class RestauranteResources {
 
     @POST
     @Transactional
-    public Response newrestaurant(Restaurente dto){
+    public Response newrestaurant(AdicionarRestauranteDTO dto){
         restauranteService.createRestaurant(dto);
-        URI uri = UriBuilder.fromPath("/{id}").build(dto.id);
-        return Response.created(uri).build();
-//      return Response.status(Response.Status.CREATED).build();
+        //URI uri = UriBuilder.fromPath("/{id}").build(dto.id);
+        //return Response.created(uri).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Transactional
-    public Response updateRestaurant(@PathParam("id") Long id, Restaurente dto){
+    public Response updateRestaurant(@PathParam("id") Long id, AtualizarRestauranteDTO dto){
         restauranteService.updateRestaurant(id, dto);
         return Response.noContent().build();
     }

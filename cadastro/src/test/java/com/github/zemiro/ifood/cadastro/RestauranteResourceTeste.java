@@ -18,7 +18,6 @@ import static org.hamcrest.CoreMatchers.is;
 @QuarkusTest
 @QuarkusTestResource(CadastroTestLifecycleManager.class)
 public class RestauranteResourceTeste {
-
     @Test
     @DataSet("restaurantes-ceneario-1.yml")
     public void testeBuscarrestaurante() {
@@ -29,5 +28,4 @@ public class RestauranteResourceTeste {
                 .extract().asString();
         Approvals.verifyJson(resultado);
     }
-
 }

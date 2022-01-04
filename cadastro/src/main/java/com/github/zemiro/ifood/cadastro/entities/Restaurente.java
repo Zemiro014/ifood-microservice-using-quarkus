@@ -2,7 +2,6 @@ package com.github.zemiro.ifood.cadastro.entities;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,8 +16,7 @@ public class Restaurente extends PanacheEntityBase {
     public String cpnj;
     public String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "localizacao_id")
+    @OneToOne(cascade = CascadeType.ALL)
     public Localizacao localizacao;
     public String proprietario;
     @CreationTimestamp

@@ -1,5 +1,7 @@
 package com.github.zemiro.ifood.cadastro.web;
 
+import com.github.zemiro.ifood.cadastro.dto.AdicionarPratoDTO;
+import com.github.zemiro.ifood.cadastro.dto.AtualizarPratoDTO;
 import com.github.zemiro.ifood.cadastro.entities.Prato;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.PratoService;
@@ -33,7 +35,7 @@ public class PratoResource {
     @Path("{restauranteId}/pratos")
     @Tag(name = "pratos dos restaurantes")
     @Transactional
-    public Response createDish(@PathParam("restauranteId") Long restauranteId, Prato dto) {
+    public Response createDish(@PathParam("restauranteId") Long restauranteId, AdicionarPratoDTO dto) {
         pratoService.createNewDishToRestaurante(restauranteId, dto);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -42,7 +44,7 @@ public class PratoResource {
     @Path("{restauranteId}/pratos/{pratoId}")
     @Tag(name = "pratos dos restaurantes")
     @Transactional
-    public Response updateDish(@PathParam("restauranteId") Long restauranteId, @PathParam("pratoId") Long pratoId, Prato dto){
+    public Response updateDish(@PathParam("restauranteId") Long restauranteId, @PathParam("pratoId") Long pratoId, AtualizarPratoDTO dto){
         System.out.println("preco: "+dto.preco);
         pratoService.updateDishOfRestaurante(restauranteId, pratoId, dto);
         return Response.noContent().build();
