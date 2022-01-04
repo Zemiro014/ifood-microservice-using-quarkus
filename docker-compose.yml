@@ -9,3 +9,15 @@ services:
       POSTGRES_PASSWORD: cadastro
     ports:
       - "5432:5432"
+# Adicionando o serviço keycloak: responsável em gerenciar acesso de usuários ao sistema ifood (todos os modulos usarão este serviço)
+
+  keycloak_ifood:
+    container_name: keycloak_ifood
+    image: jboss/keycloak:13.0.1
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: h2
+    ports:
+      - "8180:8080"
+

@@ -7,6 +7,7 @@ import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -28,7 +29,7 @@ public class RestauranteResources {
 
     @POST
     @Transactional
-    public Response newrestaurant(AdicionarRestauranteDTO dto){
+    public Response newrestaurant(@Valid AdicionarRestauranteDTO dto){
         restauranteService.createRestaurant(dto);
         //URI uri = UriBuilder.fromPath("/{id}").build(dto.id);
         //return Response.created(uri).build();
