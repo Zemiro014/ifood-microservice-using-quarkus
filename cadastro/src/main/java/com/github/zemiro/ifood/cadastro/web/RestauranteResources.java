@@ -4,6 +4,9 @@ import com.github.zemiro.ifood.cadastro.dto.AdicionarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.dto.AtualizarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
 import org.eclipse.microprofile.openapi.annotations.security.OAuthFlow;
 import org.eclipse.microprofile.openapi.annotations.security.OAuthFlows;
@@ -32,6 +35,9 @@ public class RestauranteResources {
     private RestauranteService restauranteService;
 
     @GET
+    @Counted(name = "Quantidade de busca de restaurante")
+    @SimplyTimed(name = "Tempo simples de busca")
+    @Timed(name = "tempo completo de busca")
     public Response findAllRestaurants() {
         List<Restaurente> restaurentes = restauranteService.findAllRestaurant();
         return Response.ok().entity(restaurentes).build();
