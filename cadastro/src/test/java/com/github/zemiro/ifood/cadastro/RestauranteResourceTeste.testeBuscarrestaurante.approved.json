@@ -1,0 +1,12 @@
+[
+  {
+    "id": 123,
+    "nome": "Novo Restaurante",
+    "proprietario": "ID do KleyCloack"
+  },
+  {
+    "id": 124,
+    "nome": "Novo Restaurante 2",
+    "proprietario": "ID do KleyCloack 2"
+  }
+]
