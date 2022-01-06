@@ -2,9 +2,41 @@ package com.github.zemiro.ifood.mp.referenceEntity;
 
 public class Restaurante {
 
+
     private Long id;
+    private String nome;
+    private Localizacao localizacao;
 
-    public String nome;
+    public Long getId() {
+        return id;
+    }
 
-    public Localizacao localizacao;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurante{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", localizacao=" + localizacao +
+                '}';
+    }
 }

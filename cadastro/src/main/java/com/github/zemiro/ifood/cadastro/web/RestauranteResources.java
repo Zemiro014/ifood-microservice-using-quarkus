@@ -4,6 +4,7 @@ import com.github.zemiro.ifood.cadastro.dto.AdicionarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.dto.AtualizarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
+import io.vertx.core.json.JsonObject;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
 import org.eclipse.microprofile.metrics.annotation.Timed;
@@ -12,9 +13,13 @@ import org.eclipse.microprofile.openapi.annotations.security.OAuthFlow;
 import org.eclipse.microprofile.openapi.annotations.security.OAuthFlows;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -47,6 +52,7 @@ public class RestauranteResources {
     @Transactional
     public Response newrestaurant(@Valid AdicionarRestauranteDTO dto){
         restauranteService.createRestaurant(dto);
+
         //URI uri = UriBuilder.fromPath("/{id}").build(dto.id);
         //return Response.created(uri).build();
         return Response.status(Response.Status.CREATED).build();

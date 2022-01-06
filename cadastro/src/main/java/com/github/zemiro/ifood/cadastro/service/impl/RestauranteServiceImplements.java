@@ -6,16 +6,22 @@ import com.github.zemiro.ifood.cadastro.dto.AdicionarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.dto.AtualizarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.dto.mapper.RestauranteMapper;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
+import com.github.zemiro.ifood.cadastro.messaging.producer.ActiveMQRestauranteProducer;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import java.util.List;
 
 @ApplicationScoped
 public class RestauranteServiceImplements implements RestauranteService {
     @Inject
     private RestauranteMapper restauranteMapper;
+
+    @Inject
+    ActiveMQRestauranteProducer activemqProducer;
 
     private static CRUDServiceGeneric restauranteDao = new RestauranteServiceDao();
     @Override
@@ -38,5 +44,8 @@ public class RestauranteServiceImplements implements RestauranteService {
     public void createRestaurant(AdicionarRestauranteDTO dto) {
         Restaurente entity = restauranteMapper.adicionarRestauranteDtoToRestaurante(dto);
         restauranteDao.create(entity);
+        Jsonb create = JsonbBuilder.create();
+        String json = create.toJson(entity);
+        activemqProducer.emittingMessageToActiveMQ(json);
     }
 }
