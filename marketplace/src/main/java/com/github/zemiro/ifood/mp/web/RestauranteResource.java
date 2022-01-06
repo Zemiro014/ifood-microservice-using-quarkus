@@ -4,6 +4,10 @@ import com.github.zemiro.ifood.mp.dto.PratoDTO;
 import com.github.zemiro.ifood.mp.service.api.PratoService;
 import io.smallrye.mutiny.Multi;
 import io.vertx.mutiny.pgclient.PgPool;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -22,6 +26,7 @@ public class RestauranteResource {
 
     @GET
     @Path("{idRestaurante}/pratos")
+    @APIResponse(responseCode = "200", content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = PratoDTO.class)))
     public Multi<PratoDTO> buscarPratos(@PathParam("idRestaurante") Long idRestaurante){
         return pratoService.buscarPratosPorIdRestaurante(pgPool, idRestaurante);
     }
