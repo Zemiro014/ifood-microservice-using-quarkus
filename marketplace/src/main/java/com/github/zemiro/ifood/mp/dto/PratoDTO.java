@@ -1,50 +1,53 @@
-package com.github.zemiro.ifood.mp.referenceEntity;
-
-import com.github.zemiro.ifood.mp.dto.PratoDTO;
-import io.smallrye.mutiny.Multi;
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.pgclient.PgPool;
-import io.vertx.mutiny.sqlclient.Row;
-import io.vertx.mutiny.sqlclient.RowSet;
+package com.github.zemiro.ifood.mp.dto;
 
 import java.math.BigDecimal;
-import java.util.stream.StreamSupport;
+import io.vertx.mutiny.sqlclient.Row;
 
-public class Prato {
-
+public class PratoDTO {
     private Long id;
     private String nome;
     private String descricao;
-    private Restaurante restaurante;
     private BigDecimal preco;
+
+
+
+    public static PratoDTO from(Row row) {
+        PratoDTO dto = new PratoDTO();
+        dto.descricao = row.getString("descricao");
+        dto.nome = row.getString("nome");
+        dto.id = row.getLong("id");
+        dto.preco = row.getBigDecimal("preco");
+        return dto;
+    }
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getDescricao() {
         return descricao;
     }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public Restaurante getRestaurante() {
-        return restaurante;
-    }
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
-    }
+
     public BigDecimal getPreco() {
         return preco;
     }
+
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
