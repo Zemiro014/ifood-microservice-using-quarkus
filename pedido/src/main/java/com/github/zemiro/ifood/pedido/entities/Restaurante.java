@@ -2,5 +2,13 @@ package com.github.zemiro.ifood.pedido.entities;
 
 public class Restaurante {
 
-    public String nome;
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
