@@ -28,9 +28,12 @@ public class PratoDaoImpl implements PratoDao {
     }
 
     @Override
-    public Multi<PratoDTO> findById(PgPool pgPool, Long id) {
+    public Uni<PratoDTO> findById(PgPool pgPool, Long id) {
         String query = "SELECT * FROM prato where id = "+id;
-        return makingConsult(pgPool, query);
+        Uni<RowSet<Row>> preparedQuery = pgPool.query(query).execute();
+        return preparedQuery.map(RowSet::iterator)
+                .map(iterator -> iterator.hasNext() ? PratoDTO.from(iterator.next()) : null);
+       // return makingConsult(pgPool, query);
     }
 
     private static Multi<PratoDTO> makingConsult(PgPool pgPool, String query){

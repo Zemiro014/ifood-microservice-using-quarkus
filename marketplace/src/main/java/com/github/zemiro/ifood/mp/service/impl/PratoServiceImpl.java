@@ -5,6 +5,7 @@ import com.github.zemiro.ifood.mp.dao.impl.PratoDaoImpl;
 import com.github.zemiro.ifood.mp.dto.PratoDTO;
 import com.github.zemiro.ifood.mp.service.api.PratoService;
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -22,7 +23,7 @@ public class PratoServiceImpl implements PratoService {
     }
 
     @Override
-    public Multi<PratoDTO> buscarPratoPorId(PgPool pgPool, Long id) {
+    public Uni<PratoDTO> buscarPratoPorId(PgPool pgPool, Long id) {
         return prato.findById(pgPool, id);
     }
 

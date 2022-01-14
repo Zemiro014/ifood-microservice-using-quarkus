@@ -1,0 +1,4 @@
+package com.github.zemiro.ifood.pedido.dto;
+
+public class PedidorealizadoDTO {
+}

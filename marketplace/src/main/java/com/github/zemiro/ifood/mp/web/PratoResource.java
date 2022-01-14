@@ -4,6 +4,7 @@ import com.github.zemiro.ifood.mp.dto.PratoDTO;
 import com.github.zemiro.ifood.mp.referenceEntity.Prato;
 import com.github.zemiro.ifood.mp.service.api.PratoService;
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;
 
 import javax.inject.Inject;
@@ -30,7 +31,7 @@ public class PratoResource {
 
     @GET
     @Path("{id}")
-    public Multi<PratoDTO> buscarPratoPorId(@PathParam("id") Long id){
+    public Uni<PratoDTO> buscarPratoPorId(@PathParam("id") Long id){
         return pratoService.buscarPratoPorId(pgPool, id);
     }
 }
