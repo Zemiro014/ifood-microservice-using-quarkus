@@ -69,14 +69,12 @@ public class CarrinhoResource {
         pedido.setRestaurante(restaurante);
 
         //Enviando pedido no kafka
-        System.out.println(pedido.getCliente());
         emitterPedido.send(pedido);
         return pratoCarrinhoService.deletePratoCarrinho(client, cliente);
     }
 
     private PratoPedidoDTO from(PratoCarrinho pratoCarrinho) {
         PratoDTO dto = pratoService.buscarPratoPorId(client, pratoCarrinho.getPrato()).await().indefinitely();
-        System.out.println(dto.getNome());
         return new PratoPedidoDTO(dto.getNome(), dto.getDescricao(), dto.getPreco());
     }
 }
