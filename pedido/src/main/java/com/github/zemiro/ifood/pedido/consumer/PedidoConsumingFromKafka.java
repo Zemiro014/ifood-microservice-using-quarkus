@@ -1,6 +1,7 @@
 package com.github.zemiro.ifood.pedido.consumer;
 
 import com.github.zemiro.ifood.pedido.dto.PedidorealizadoDTO;
+import com.github.zemiro.ifood.pedido.elasticsearch.PedidoESService;
 import com.github.zemiro.ifood.pedido.service.api.PedidoService;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 public class PedidoConsumingFromKafka {
     @Inject
     private PedidoService pedidoService;
+
 
     @Incoming("pedidos")
     public void consumingPedidos(PedidorealizadoDTO dto){
