@@ -66,6 +66,11 @@
       <artifactId>elasticsearch-rest-high-level-client</artifactId>
       <version>7.6.2</version>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>br.com.bpp.core.correiosintegrator</groupId>-->
+<!--      <artifactId>CorreiosIntegrator-jar</artifactId>-->
+<!--      <version>3.9.6</version>-->
+<!--    </dependency>-->
   </dependencies>
   <build>
     <plugins>
