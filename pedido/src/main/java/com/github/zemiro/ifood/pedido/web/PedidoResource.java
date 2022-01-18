@@ -1,5 +1,6 @@
 package com.github.zemiro.ifood.pedido.web;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.enterprise.event.Observes;
@@ -24,11 +25,14 @@ import io.vertx.ext.bridge.PermittedOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.mutiny.core.eventbus.EventBus;
+import org.jboss.logging.Logger;
 
 @Path("/pedidos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PedidoResource {
+
+    private static final Logger LOG = Logger.getLogger(PedidoResource.class);
 
     @Inject
     Vertx vertx;
@@ -50,7 +54,9 @@ public class PedidoResource {
     }
 
     @GET
-    public List<PanacheMongoEntityBase> hello(){
+    public List<PanacheMongoEntityBase> listarOsPedidos(){
+        LOG.info("Olá Quarkus");
+        LOG.infov("Olá Quarkus {0}", LocalDateTime.now());
         return Pedido.listAll();
     }
 
