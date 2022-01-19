@@ -17,8 +17,4 @@ public class AdicionarRestauranteDTO {
     public String nome;
 
     public LocalizacaoDTO localizacao;
-
-    @NotEmpty
-    @NotNull
-    public String proprietario;
 }

@@ -8,6 +8,7 @@ import com.github.zemiro.ifood.cadastro.dto.mapper.RestauranteMapper;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.messaging.producer.ActiveMQRestauranteProducer;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

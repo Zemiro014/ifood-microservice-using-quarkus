@@ -4,6 +4,7 @@ import com.github.zemiro.ifood.cadastro.dto.AdicionarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.dto.AtualizarRestauranteDTO;
 import com.github.zemiro.ifood.cadastro.entities.Restaurente;
 import com.github.zemiro.ifood.cadastro.service.api.RestauranteService;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
 import org.eclipse.microprofile.metrics.annotation.Timed;
